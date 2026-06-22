@@ -1,12 +1,12 @@
 # Java
-java_project/src/main/java/com/example/grade/GradeReportSample.java
-java_project/src/main/java/com/example/MainSample.java
-java_project/src/test/java/com/example/grade/GradeReportTestSample.java
+#java_project/src/main/java/com/example/grade/GradeReportSample.java
+#java_project/src/main/java/com/example/MainSample.java
+#java_project/src/test/java/com/example/grade/GradeReportTestSample.java
 **/target/
 # Python
-python_project/src/grade/grade_report_sample.py
-python_project/src/main_sample.py
-python_project/tests/grade/test_grade_report_sample.py
+#python_project/src/grade/grade_report_sample.py
+#python_project/src/main_sample.py
+#python_project/tests/grade/test_grade_report_sample.py
 **/__pycache__
 **/.pytest_cache
 **/.venv
