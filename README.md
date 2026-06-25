@@ -73,34 +73,36 @@ theme-learning-program-unittest
   - mvn -v を実行してバージョン表示されること
 
 ### 2. プログラム作成
-- 評価判定
-  - 入力値チェックを行う
-    - NG：Nullを返却
-    - OK：成績の作成を行い成績を返却
-  - 評価を判定、判定基準は生徒の試験点数(100点満点)と出席回数
-    - A：試験点数が80点以上かつ出席回数が10割
-    - B：試験点数が60点以上かつ出席回数が8割以上
-    - C：試験点数が40点以上かつ出席回数が6割以上
-    - D：C判定を満たしていない
-  - 成績を成績表へ追加する、項目は以下
-    - 生徒名,出席回数,試験点数,評価
-  - 評価を返却
-- 入力値チェック(単項目)
-  - 生徒名と試験点数と出席回数をチェックする 
-    - ※チェック内容の検討から実施する
-- 試験順位の表示
-  - 成績表の中身を試験点数順でコンソール表示する
-  - 例）順位:1, 生徒名=山田太郎, 試験点数=80
+1.成績表抽象クラスを継承した成績表クラスを作成する。  
+  - 入力値チェックメソッド
+    - 評価判定の前に呼び出し、生徒名と試験点数と出席回数をチェック(型と閾値とnull)して結果を返却する。 
+      - NGの場合は例外を発生させる。
+      - OKの場合は何も行わない。
+  - 評価判定メソッド
+    - 生徒の試験点数(100点満点)と出席回数(最大5回)から評価を判定し返却する。
+      - A：試験点数が80点以上かつ出席回数が10割
+      - B：試験点数が60点以上かつ出席回数が8割以上
+      - C：試験点数が40点以上かつ出席回数が6割以上
+      - D：C判定を満たしていない
+    - メッセージを返却する「"{授業名}授業の"{生徒名}さんの評価は{評価}です。"」
+
+2.実行クラスに以下の処理を記載する。
+  - 成績管理クラスのインスタンスを生成。
+    - 授業名と最大授業数をインプットに設定する。 
+  - 入力値チェックメソッドを呼び出す。 
+  - 評価判定メソッドを呼び出す。 
+
+3.実行コマンドで実行クラスを呼び出す。
 #### 実行コマンド
 ```bash
 ＃Javaの場合
-cd /{プロジェクト配置場所}/theme-learning-program-unittest\java_project
+cd /{プロジェクト配置場所}/theme-learning-program-unittest/java_project
 mvn compile
 mvn --% exec:java -Dexec.mainClass=com.example.grade.Main
 
 ＃Pythonの場合
-cd /{プロジェクト配置場所}/theme-learning-program-unittest\python_project
-.venv\Scripts\Activate.ps1
+cd /{プロジェクト配置場所}/theme-learning-program-unittest/python_project
+.venv/Scripts/Activate.ps1
 python ./src/main.py
 ```
 
@@ -110,12 +112,12 @@ python ./src/main.py
 #### 実行コマンド
 ```bash
 ＃Javaの場合
-cd /{プロジェクト配置場所}/theme-learning-program-unittest\java_project
+cd /{プロジェクト配置場所}/theme-learning-program-unittest/java_project
 mvn test -Dtest=GradeReportTest
 
 ＃Pythonの場合
-cd /{プロジェクト配置場所}/theme-learning-program-unittest\python_project
-.venv\Scripts\Activate.ps1
+cd /{プロジェクト配置場所}/theme-learning-program-unittest/python_project
+.venv/Scripts/Activate.ps1
 python -m pytest -v ./tests/grade/test_grade_report.py
 ```
 ---
