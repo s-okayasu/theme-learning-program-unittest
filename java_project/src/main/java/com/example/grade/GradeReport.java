@@ -1,6 +1,7 @@
 package com.example.grade;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class GradeReport extends AbstractGradeReport{
 
@@ -13,18 +14,19 @@ public class GradeReport extends AbstractGradeReport{
      */
     @Override
     public String judgeGrade(String studentName, int examScore, int attendanceCount) throws Exception{
-        // HashMap<String, String> gradeReport = new HashMap<>();
-        // gradeReport.put("生徒名", studentName);
-        // gradeReport.put("試験点数", String.valueOf(examScore));
-        // gradeReport.put("出席回数", String.valueOf(attendanceCount));
-        // gradeReport.put("評価", "A");
-        // gradeReportList.add(gradeReport);
-        if(examScore >= 85 && attendanceCount >= 5){
-            return "A";
-        }else{
-            return "B";
+        String grade = "";
+        if (examScore >= 80 && attendanceCount == totalClassCount * 1) {
+            grade = "A";
+        } else if (examScore >= 60 && attendanceCount >= totalClassCount * 0.8) {
+            grade = "B";
+        } else if (examScore >= 40 && attendanceCount >= totalClassCount * 0.6) {
+            grade = "C";
+        } else {
+            grade = "D";
         }
-        
+        //String message = "{授業名}授業の{生徒名}さんの評価は" + grade + "です。";
+        String message = String.format("%s授業の%sさんの評価は%sです。", className, studentName, grade);
+        return message;
     };
 
     /**
@@ -32,6 +34,10 @@ public class GradeReport extends AbstractGradeReport{
      */
     @Override
     protected boolean validateInput(String studentName, int examScore, int attendanceCount) {
+        if (Objects.isNull(studentName)) {
+            return false;
+        }
+
         return true;
     };
 
