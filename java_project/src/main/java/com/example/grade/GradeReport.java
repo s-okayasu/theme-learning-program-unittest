@@ -33,7 +33,7 @@ public class GradeReport extends AbstractGradeReport{
      * 生徒名と試験点数と出席回数を入力値チェック(単項目)する
      */
     @Override
-    protected boolean validateInput(String studentName, int examScore, int attendanceCount) {
+    public boolean validateInput(String studentName, int examScore, int attendanceCount) {
         if (Objects.isNull(studentName)) {
             return false;
         }
