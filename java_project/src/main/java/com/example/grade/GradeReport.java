@@ -34,24 +34,13 @@ public class GradeReport extends AbstractGradeReport{
      */
     @Override
     public boolean validateInput(String studentName, int examScore, int attendanceCount) {
+        boolean validationResult ;
         if (Objects.isNull(studentName)) {
-            return false;
+            validationResult = false;
+        } else {
+            validationResult = true;
         }
-
-        return true;
-    };
-
-    /**
-     * 成績表を試験点数の高い順で出力する
-     */
-    @Override
-    public void showRanking() {
-        int rank = 1;
-        for (HashMap<String, String> gradeReport : gradeReportList) {
-            String output = String.format("順位: %s, 成績: %s", rank, gradeReport);
-            System.out.println(output);
-            rank++; 
-        }
+        return validationResult;
     };
 
 }

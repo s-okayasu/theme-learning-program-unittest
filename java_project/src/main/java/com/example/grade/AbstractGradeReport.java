@@ -25,9 +25,4 @@ public abstract class AbstractGradeReport {
      */
     protected abstract boolean validateInput(String studentName, int examScore, int attendanceCount);
 
-    /**
-     * 試験順位の表示
-     */
-    public abstract void showRanking();
-
 }
