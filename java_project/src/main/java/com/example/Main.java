@@ -1,5 +1,7 @@
 package com.example;
 
+import java.util.Scanner;
+
 import com.example.grade.GradeReport;
 
 public class Main {
@@ -9,25 +11,34 @@ public class Main {
         try {
             System.out.println("=== 成績表プログラム 開始 ===");
 
-            // インプット情報を定義
-            String className = "数学";
-            int totalClassCount = 5;
-            String studentName = "高岡";
-            int examScore = 100;
-            int attendanceCount = 4;
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("授業名を入力してください: ");
+            String className = scanner.nextLine();
+            System.out.print("総授業数を入力してください: ");
+            int totalClassCount = Integer.parseInt(scanner.nextLine());
+            System.out.print("生徒名を入力してください: ");
+            String studentName = scanner.nextLine();
+            System.out.print("試験点数を入力してください: ");
+            int examScore = Integer.parseInt(scanner.nextLine());
+            System.out.print("出席回数を入力してください: ");
+            int attendanceCount = Integer.parseInt(scanner.nextLine());
 
-            // 成績判定を呼び出し
             GradeReport gradeReports = new GradeReport(className, totalClassCount);
             boolean result = gradeReports.validateInput(studentName, examScore, attendanceCount);
 
-        if (result == true) {
-            String grade = gradeReports.judgeGrade(studentName, examScore, attendanceCount);            
-            System.out.println(grade); 
-        } else {
-            System.out.println("氏名を入力");
-        }
+            if (result) {
+                String grade = gradeReports.judgeGrade(studentName, examScore, attendanceCount);
+                System.out.println("========================================");
+                System.out.println("成績結果: " + grade);
+                System.out.println("========================================");
+            } else {
+                System.out.println("氏名を入力");
+            }
 
-            System.out.println("=== 成績表プログラム 終了 ===");            
+            System.out.println("=== 成績表プログラム 終了 ===");
+            scanner.close();
+        } catch (NumberFormatException e) {
+            System.out.println("数値を正しく入力してください。");
         } catch (Exception e) {
             e.printStackTrace();
         }
