@@ -35,8 +35,23 @@ public class GradeReport extends AbstractGradeReport{
     @Override
     public boolean validateInput(String studentName, int examScore, int attendanceCount) {
         boolean validationResult ;
-        if (Objects.isNull(studentName)) {
+        if (studentName.isEmpty()) {
             validationResult = false;
+            return validationResult;
+        } else {
+            validationResult = true;
+        }
+    
+        if (examScore > 100 || examScore < 0) {
+            validationResult = false;
+            return validationResult;
+        } else {
+            validationResult = true;
+        }
+    
+        if (attendanceCount > totalClassCount || attendanceCount < 0) {
+            validationResult = false;
+            return validationResult;
         } else {
             validationResult = true;
         }

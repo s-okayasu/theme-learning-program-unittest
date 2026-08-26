@@ -116,15 +116,57 @@ class GradeReportTest {
     }
 
     @Test
-    void testValidateInput_False() { 
+    void testValidateInput_False_studentName() { 
     
         try{
             // インプット情報を定義
             String className = "数学";
             int totalClassCount = 5;
-            String studentName = null;
+            String studentName = "";
             int examScore = 80;
             int attendanceCount = 5;
+
+            // 入力値チェック(単項目)を呼び出し
+            GradeReport gradeReports = new GradeReport(className, totalClassCount);
+            boolean validationResult = gradeReports.validateInput(studentName, examScore, attendanceCount);
+            assertFalse(validationResult);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
+    }
+
+    @Test
+    void testValidateInput_False_examScore() { 
+    
+        try{
+            // インプット情報を定義
+            String className = "数学";
+            int totalClassCount = 5;
+            String studentName = "山田太郎";
+            int examScore = 120;
+            int attendanceCount = 5;
+
+            // 入力値チェック(単項目)を呼び出し
+            GradeReport gradeReports = new GradeReport(className, totalClassCount);
+            boolean validationResult = gradeReports.validateInput(studentName, examScore, attendanceCount);
+            assertFalse(validationResult);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }    
+    }
+
+    @Test
+    void testValidateInput_False_attendanceCount() { 
+    
+        try{
+            // インプット情報を定義
+            String className = "数学";
+            int totalClassCount = 5;
+            String studentName = "山田太郎";
+            int examScore = 80;
+            int attendanceCount = -1;
 
             // 入力値チェック(単項目)を呼び出し
             GradeReport gradeReports = new GradeReport(className, totalClassCount);

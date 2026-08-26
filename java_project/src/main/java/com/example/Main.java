@@ -32,13 +32,18 @@ public class Main {
                 System.out.println("成績結果: " + grade);
                 System.out.println("========================================");
             } else {
-                System.out.println("氏名を入力");
+                System.out.println("========================================");
+                System.out.println("入力値チェック: 異常");
+                System.out.println("========================================");
             }
 
             System.out.println("=== 成績表プログラム 終了 ===");
             scanner.close();
         } catch (NumberFormatException e) {
+            System.out.println("========================================");
             System.out.println("数値を正しく入力してください。");
+            System.out.println("========================================");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
